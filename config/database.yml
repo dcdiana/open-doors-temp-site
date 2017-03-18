@@ -5,10 +5,35 @@ default: &default
   username: <%= Rails.application.secrets[:database][:username] %>
   password: <%= Rails.application.secrets[:database][:password] %>
   socket: <%= Rails.application.secrets[:database][:socket] %>
-  database: <%= APP_CONFIG[:sitekey] %>
 
+config_db:
+  development:
+    <<: *default
+    database: archives
+  test:
+    <<: *default
+    database: archives_test
+  production:
+    <<: *default
+    database: archives
+
+archive_db:
+  development:
+    <<: *default
+    database: <%= APP_CONFIG[:sitekey] %>
+
+  test:
+    <<: *default
+    database: opendoorstempsite_test
+
+  production:
+    <<: *default
+    database: <%= APP_CONFIG[:sitekey] %>
+
+# Not used to load data, just make an initialiser happy
 development:
   <<: *default
+  database: <%= APP_CONFIG[:sitekey] %>
 
 test:
   <<: *default
@@ -16,3 +41,4 @@ test:
 
 production:
   <<: *default
+  database: <%= APP_CONFIG[:sitekey] %>

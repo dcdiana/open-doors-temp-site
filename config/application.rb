@@ -16,5 +16,10 @@ module OpendoorsTempSite
 
     config.assets.prefix = "/#{APP_CONFIG[:sitekey]}/assets"
     config.autoload_paths += %W(#{config.root}/lib)
+
+    db_conf = YAML.load(ERB.new(File.read("config/database.yml")).result)
+
+    CONFIG_DB_CONF = db_conf["config_db"][Rails.env]
+    ARCHIVE_DB_CONF = db_conf["archive_db"][Rails.env]
   end
 end
