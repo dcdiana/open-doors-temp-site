@@ -4,6 +4,11 @@ $(function() {
 
   var img = "<img src='<%= asset_path('aloader.gif') %>' class='loading'/>";
 
+//  var width = 0;
+//  $(".pagination.alpha a").each(function() {
+//    width += $(this).outerWidth( true );
+//  });
+//  $(".pagination.alpha").css("width", width);
 
   var navbar = $(".pagination.alpha a");
   // Pick the handler list: just a quick check for the jQuery version (see here: http://bugs.jquery.com/ticket/10589)
@@ -64,7 +69,6 @@ $(function() {
   function loadPage(url){
     $(".pagination.alpha").html(img);
     $.get(url, function (result) {
-console.log("loadPage");
       var pagination_table = $("article", result).closest("div#pagination_table").html(),
           will_paginate = $(".pagination.will_paginate", result).html();
 
