@@ -1,6 +1,6 @@
 class CreateArchiveConfigs < ActiveRecord::Migration[5.0]
   def change
-    ActiveRecord::Base.establish_connection(Application::CONFIG_DB_CONF)
+    ActiveRecord::Base.establish_connection(Rails.Application::CONFIG_DB_CONF)
 
     create_table :archive_configs, id: :integer, default: 0, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
       t.string "key", limit: 45, null: false
